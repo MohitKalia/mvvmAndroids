@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.view.View;
 
 import com.app.fitv1.Base.BaseActivity;
-import com.app.fitv1.Features.ForgotPassword.ForgotPassword;
 import com.app.fitv1.Features.Login.LoginActivity;
-import com.app.fitv1.LoginViewModel;
 import com.app.fitv1.ProjectUtils.BaseCallBack;
 import com.app.fitv1.R;
 import com.app.fitv1.RegisterViewModel;
@@ -81,8 +79,10 @@ public class Register extends BaseActivity<ActivityRegisterBinding, RegisterPres
 
     @Override
     public void registerResponse(BasicApiModel output) {
-
+        if (output.getStatus()) {
+            LoginActivity.start(getActivityG());
+            finish();
+        }
+        displayError(output.getMessage());
     }
-
-
 }

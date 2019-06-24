@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
@@ -123,7 +124,8 @@ public abstract class BaseFragment<B extends ViewDataBinding, T extends Presenta
     @Override
     public void displayError(String message) {
         if (getParentView() != null) {
-            Snackbar.make(getParentView(), message, Snackbar.LENGTH_LONG).show();
+            Toast.makeText(getActivityG(), message, Toast.LENGTH_SHORT).show();
+            //Snackbar.make(setParentView(), message, Snackbar.LENGTH_LONG).show();
         }
     }
 

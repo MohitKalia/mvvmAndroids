@@ -1,5 +1,7 @@
 package com.app.fitv1.Features.Register;
 
+import android.util.Patterns;
+
 import com.app.fitv1.Base.BasePresenter;
 import com.app.fitv1.ProjectUtils.BaseCallBack;
 import com.app.fitv1.WebServices.ApisHelper;
@@ -13,7 +15,7 @@ class RegisterPresenter extends BasePresenter<RegisterView> {
             getView().displayError("Please enter Full name");
         } else if (getView().email() == null || getView().email().isEmpty()) {
             getView().displayError("Please enter email");
-        } else if (getView().email().length() < 10) {
+        } else if (! Patterns.EMAIL_ADDRESS.matcher(getView().email()).matches()) {
             getView().displayError("Please enter valid email");
         } else if (getView().password() == null || getView().password().isEmpty()) {
             getView().displayError("Please enter password");
@@ -36,7 +38,6 @@ class RegisterPresenter extends BasePresenter<RegisterView> {
                         }
                     });
         }
-
     }
 }
 

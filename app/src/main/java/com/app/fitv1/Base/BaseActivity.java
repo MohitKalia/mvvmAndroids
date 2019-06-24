@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -115,7 +116,8 @@ public abstract class BaseActivity<B extends ViewDataBinding, T extends Presenta
     @Override
     public void displayError(String message) {
         if (setParentView() != null) {
-            Snackbar.make(setParentView(), message, Snackbar.LENGTH_LONG).show();
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+            //Snackbar.make(setParentView(), message, Snackbar.LENGTH_LONG).show();
         }
     }
 
@@ -137,7 +139,7 @@ public abstract class BaseActivity<B extends ViewDataBinding, T extends Presenta
             progressDialog.setTitle(progressTitle);
             progressDialog.setMessage(progressMessage);
         }
-        progressDialog.show();
+        if (!progressDialog.isShowing()) progressDialog.show();
     }
 
     /**
